@@ -3,11 +3,14 @@
 --
 -- Author: Majo76
 -- email: ls (at) majo76 (dot) de
--- @Date: 19.07.2025
--- @Version: 1.1.7.0
+-- @Date: 15.10.2025
+-- @Version: 1.1.7.1
 
 --[[
 CHANGELOG
+
+2025-10-15 - V1.1.7.1
+* possible fix for arithmetic mul error when stop-and-go-breaking is disabled in combination with some other mods
 
 2025-07-19 - V1.1.7.0
 * fix degree display #68
@@ -2523,7 +2526,9 @@ function FS25_EnhancedVehicle:updateVehiclePhysics( originalFunction, axisForwar
             movingDirection = 0
           end
         else
-          movingDirection = Utils.getNoNil(self.nextMovingDirection * self.spec_drivable.reverserDirection)
+          if self.nextMovingDirection ~= nil and self.spec_drivable.reverserDirection ~= nil then
+            movingDirection = self.nextMovingDirection * self.spec_drivable.reverserDirection
+          end
         end
         if movingDirection == 0 then movingDirection = 1 end
 
