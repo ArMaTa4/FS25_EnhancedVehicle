@@ -539,7 +539,7 @@ function FS25_EnhancedVehicle:onPostLoad(savegame)
   self.vData = {}
   self.vData.is   = {   nil,   nil, nil, nil,   nil,   nil, nil, nil, nil, nil, nil, nil, nil,   nil, nil, nil }
   self.vData.want = { false, false,   1, 0.0, false, false,   0,   0,   0,   0,   0,   0, false, 0.0, 0.0, 0 }
-  self.vData.torqueRatio   = { 0.5, 0.5, 0.5 }
+  self.vData.torqueRatio   = { 0.25, 0.25, 0.25 }
   self.vData.maxSpeedRatio = { 1.0, 1.0, 1.0 }
   self.vData.rot = 0.0
   self.vData.axisSidePrev = 0.0
