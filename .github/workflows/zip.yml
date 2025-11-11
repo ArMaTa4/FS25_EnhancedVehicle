@@ -23,4 +23,4 @@ jobs:
       - name: Zip Folder
         run: |
           rm -rf FS25_EnhancedVehicle.zip
-          zip -r FS25_EnhancedVehicle.zip FS25_EnhancedVehicle -x ".git/*" ".github/*"
+          zip -r FS25_EnhancedVehicle.zip FS25_EnhancedVehicle -x ".git/*" ".github/*" "misc/*"
