@@ -24,4 +24,4 @@ jobs:
           if [ -f "$target" ]; then
             rm -f "$target"
           fi
-          zip -r "$target"  -x "./.git/*" "./.github/*" "./misc/*"
+          zip -r "$target" . -x "./.git/*" "./.github/*" "./misc/*"
