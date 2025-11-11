@@ -18,6 +18,10 @@ jobs:
           persist-credentials: true
           fetch-depth: 0
 
+      - name: Update version
+        run: |
+          sed -i -r "s/<version>([^_]+)[^<]*<\/version>/<version>\1_$(date +%Y%m%d%H%M%S)<\version>/gm" modDesc.xml
+
       - name: Zip repository
         run: |
           file="FS25_EnhancedVehicle"
