@@ -1,30 +1,26 @@
-# This is a basic workflow to help you get started with Actions
-
 name: CI
 
-# Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
-
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
   zip-n-push:
     name: Zip and Push
     runs-on: ubuntu-latest
     steps:
-      - name: Zip Folder
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Zip repository
         run: |
-          file = "FS25_EnhancedVehicle"
-          extension = ".zip"
-          if [ -f "$file"+"$extension" ] ; then
-            rm -rf "$file"+"$extension"
+          file="FS25_EnhancedVehicle"
+          extension=".zip"
+          target="$file$extension"
+          if [ -f "$target" ]; then
+            rm -f "$target"
           fi
-          zip -r "$file"+"$extension" FS25_EnhancedVehicle -x ".git/*" ".github/*" "misc/*"
+          zip -r "$target" . -x "./.git/*" "./.github/*" "./misc/*"
