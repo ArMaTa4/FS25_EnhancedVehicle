@@ -17,10 +17,11 @@ jobs:
 
       - name: Zip repository
         run: |
+          cd ..
           file="FS25_EnhancedVehicle"
           extension=".zip"
           target="$file$extension"
           if [ -f "$target" ]; then
             rm -f "$target"
           fi
-          zip -r "$target" . -x "./.git/*" "./.github/*" "./misc/*"
+          zip -r "$target"  -x "./.git/*" "./.github/*" "./misc/*"
