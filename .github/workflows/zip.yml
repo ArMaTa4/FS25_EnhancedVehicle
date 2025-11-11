@@ -17,7 +17,7 @@ jobs:
 
       - name: Zip repository
         run: |
-          ls > out.txt
+          ls -l
           file="FS25_EnhancedVehicle"
           extension=".zip"
           target="$file$extension"
