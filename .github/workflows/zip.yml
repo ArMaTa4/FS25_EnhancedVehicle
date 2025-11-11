@@ -14,6 +14,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+          fetch-depth: 0
 
       - name: Zip repository
         run: |
@@ -24,3 +27,14 @@ jobs:
             rm -f "$target"
           fi
           zip -r "$target" . -x "./.git/*" "./.github/*" "./misc/*"
+
+      - name: Configure git for push
+        run: |
+          git config user.name "armata4"
+          git config user.email "armata4@users.noreply.github.com"
+
+      - name: Commit and push zip
+        run: |
+          git add FS25_EnhancedVehicle.zip
+          git commit -m "Add FS25_EnhancedVehicle.zip [skip ci]" || echo "No changes to commit"
+          git push origin HEAD:main
