@@ -22,5 +22,9 @@ jobs:
     steps:
       - name: Zip Folder
         run: |
-          rm -rf FS25_EnhancedVehicle.zip
-          zip -r FS25_EnhancedVehicle.zip FS25_EnhancedVehicle -x ".git/*" ".github/*" "misc/*"
+          file = "FS25_EnhancedVehicle"
+          extension = ".zip"
+          if [ -f "$file"+"$extension" ] ; then
+            rm -rf "$file"+"$extension"
+          fi
+          zip -r "$file"+"$extension" FS25_EnhancedVehicle -x ".git/*" ".github/*" "misc/*"
