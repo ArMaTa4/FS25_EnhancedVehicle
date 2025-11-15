@@ -74,7 +74,7 @@ local implements_front
 local implements_back
 local listOfObjects
 
-global debug = 5
+global debug = 3
 
 -- #############################################################################
 
