@@ -638,7 +638,7 @@ function FS25_EnhancedVehicle:onReadStream(streamId, connection)
   self.vData.is[3] =  streamReadInt8(streamId)    -- drive mode
   self.vData.is[4] =  streamReadFloat32(streamId) -- snap angle
   self.vData.is[5] =  streamReadBool(streamId)    -- snap.enable
-  self.vData.is[6] =  streamReadBool(streamId)    -- snap on track
+  self.vData.is[6] =  streamReadBool(streamId)    -- snap on track 
   self.vData.is[7] =  streamReadFloat32(streamId) -- snap track px
   self.vData.is[8] =  streamReadFloat32(streamId) -- snap track pz
   self.vData.is[9] =  streamReadFloat32(streamId) -- snap track dX
@@ -927,7 +927,7 @@ function FS25_EnhancedVehicle:updatevData(self)
   if self.vData.is[1] ~= self.vData.want[1] then
     if FS25_EnhancedVehicle.functionDiffIsEnabled then
       if self.vData.want[1] then
-        updateDifferential(self.rootNode, 0, self.vData.torqueRatio[1], 1)
+        updateDifferential(self.rootNode, 0, self.vData.torqueRatio[1], 0.5)
         if debug > 0 then print("--> ("..self.rootNode..") changed front diff to: ON") end
       else
         updateDifferential(self.rootNode, 0, self.vData.torqueRatio[1], self.vData.maxSpeedRatio[1] * 1000)
@@ -941,7 +941,7 @@ function FS25_EnhancedVehicle:updatevData(self)
   if self.vData.is[2] ~= self.vData.want[2] then
     if FS25_EnhancedVehicle.functionDiffIsEnabled then
       if self.vData.want[2] then
-        updateDifferential(self.rootNode, 1, self.vData.torqueRatio[2], 1)
+        updateDifferential(self.rootNode, 1, self.vData.torqueRatio[2], 0.5)
         if debug > 0 then print("--> ("..self.rootNode..") changed back diff to: ON") end
       else
         updateDifferential(self.rootNode, 1, self.vData.torqueRatio[2], self.vData.maxSpeedRatio[2] * 1000)
@@ -958,10 +958,10 @@ function FS25_EnhancedVehicle:updatevData(self)
         updateDifferential(self.rootNode, 2, -0.00001, 1)
         if debug > 0 then print("--> ("..self.rootNode..") changed wheel drive mode to: 2WD") end
       elseif self.vData.want[3] == 1 then
-        updateDifferential(self.rootNode, 2, self.vData.torqueRatio[3], 1)
+        updateDifferential(self.rootNode, 2, self.vData.torqueRatio[3], 0.25)
         if debug > 0 then print("--> ("..self.rootNode..") changed wheel drive mode to: 4WD") end
       elseif self.vData.want[3] == 2 then
-        updateDifferential(self.rootNode, 2, 1, 0)
+        updateDifferential(self.rootNode, 2, 1, 0.25)
         if debug > 0 then print("--> ("..self.rootNode..") changed wheel drive mode to: FWD") end
       end
     end
