@@ -926,19 +926,14 @@ function FS25_EnhancedVehicle:updatevData(self)
   -- front diff
   if self.vData.is[1] ~= self.vData.want[1] then
     if FS25_EnhancedVehicle.functionDiffIsEnabled then
-      local debugOldState = debug
-      debug = 1
-      self.spec_motorized.motor.maxForwardSpeed = math.max(self.spec_motorized.motor.maxForwardSpeed,self.maxspeed_backup or 0)
       if self.vData.want[1] then
         updateDifferential(self.rootNode, 0, self.vData.torqueRatio[1], 1)
         if debug > 0 then print("--> ("..self.rootNode..") changed front diff to: ON") end
-        self.maxspeed_backup = self.spec_motorized.motor.maxForwardSpeed
-        self.spec_motorized:setSpeedLimit(self.spec_motorized.motor.maxForwardSpeed / 4)
+        self.spec_motorized:setSpeedLimit(0.5)
       else
         updateDifferential(self.rootNode, 0, self.vData.torqueRatio[1], self.vData.maxSpeedRatio[1] * 1000)
         if debug > 0 then print("--> ("..self.rootNode..") changed front diff to: OFF") end
       end
-      debug = debugOldState
     end
     self.vData.is[1] = self.vData.want[1]
   end
@@ -946,16 +941,13 @@ function FS25_EnhancedVehicle:updatevData(self)
   -- back diff
   if self.vData.is[2] ~= self.vData.want[2] then
     if FS25_EnhancedVehicle.functionDiffIsEnabled then
-      local debugOldState = debug
-      debug = 1
       if self.vData.want[2] then
         updateDifferential(self.rootNode, 1, self.vData.torqueRatio[2], 1)
         if debug > 0 then print("--> ("..self.rootNode..") changed back diff to: ON") end
       else
         updateDifferential(self.rootNode, 1, self.vData.torqueRatio[2], self.vData.maxSpeedRatio[2] * 1000)
         if debug > 0 then print("--> ("..self.rootNode..") changed back diff to: OFF") end
-      end
-      debug = debugOldState      
+      end   
     end
     self.vData.is[2] = self.vData.want[2]
   end
@@ -963,8 +955,6 @@ function FS25_EnhancedVehicle:updatevData(self)
   -- wheel drive mode
   if self.vData.is[3] ~= self.vData.want[3] then
     if FS25_EnhancedVehicle.functionDiffIsEnabled then
-      local debugOldState = debug
-      debug = 1
       if self.vData.want[3] == 0 then
         updateDifferential(self.rootNode, 2, -0.00001, 1)
         if debug > 0 then print("--> ("..self.rootNode..") changed wheel drive mode to: 2WD") end
@@ -975,7 +965,6 @@ function FS25_EnhancedVehicle:updatevData(self)
         updateDifferential(self.rootNode, 2, 1, 1)
         if debug > 0 then print("--> ("..self.rootNode..") changed wheel drive mode to: FWD") end
       end
-      debug = debugOldState
     end
     self.vData.is[3] = self.vData.want[3]
   end
