@@ -927,7 +927,7 @@ function FS25_EnhancedVehicle:updatevData(self)
   if self.vData.is[1] ~= self.vData.want[1] then
     if FS25_EnhancedVehicle.functionDiffIsEnabled then
       local debugOldState = debug
-      $debug = 1
+      debug = 1
       if self.vData.want[1] then
         updateDifferential(self.rootNode, 0, self.vData.torqueRatio[1]*0.5, 0.5)
         if debug > 0 then print("--> ("..self.rootNode..") changed front diff to: ON") end
@@ -943,8 +943,8 @@ function FS25_EnhancedVehicle:updatevData(self)
   -- back diff
   if self.vData.is[2] ~= self.vData.want[2] then
     if FS25_EnhancedVehicle.functionDiffIsEnabled then
-            local debugOldState = debug
-      $debug = 1
+      local debugOldState = debug
+      debug = 1
       if self.vData.want[2] then
         updateDifferential(self.rootNode, 1, self.vData.torqueRatio[2], 1)
         if debug > 0 then print("--> ("..self.rootNode..") changed back diff to: ON") end
@@ -960,8 +960,8 @@ function FS25_EnhancedVehicle:updatevData(self)
   -- wheel drive mode
   if self.vData.is[3] ~= self.vData.want[3] then
     if FS25_EnhancedVehicle.functionDiffIsEnabled then
-            local debugOldState = debug
-      $debug = 1
+      local debugOldState = debug
+      debug = 1
       if self.vData.want[3] == 0 then
         updateDifferential(self.rootNode, 2, -0.00001, 1)
         if debug > 0 then print("--> ("..self.rootNode..") changed wheel drive mode to: 2WD") end
@@ -972,7 +972,7 @@ function FS25_EnhancedVehicle:updatevData(self)
         updateDifferential(self.rootNode, 2, 1, 0.25)
         if debug > 0 then print("--> ("..self.rootNode..") changed wheel drive mode to: FWD") end
       end
-            debug = debugOldState
+      debug = debugOldState
     end
     self.vData.is[3] = self.vData.want[3]
   end
