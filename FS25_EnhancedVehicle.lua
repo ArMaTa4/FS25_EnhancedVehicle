@@ -841,6 +841,7 @@ end
 -- #############################################################################
 
 function FS25_EnhancedVehicle:updatevData(self)
+  print("FS25_EnhancedVehicle:updatevData called for vehicle ".. tostring(self.rootNode) .. mySelf(self))
   if debug > 2 then print("-> " .. myName .. ": updatevData ".. mySelf(self)) end
 
   -- snap angle change
