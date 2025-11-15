@@ -929,6 +929,7 @@ function FS25_EnhancedVehicle:updatevData(self)
       if self.vData.want[1] then
         updateDifferential(self.rootNode, 0, self.vData.torqueRatio[1], 1)
         if debug > 0 then print("--> ("..self.rootNode..") changed front diff to: ON") end
+        print(self.spec_motorized:getSpeedLimit())
         self.spec_motorized:setSpeedLimit(0.5)
       else
         updateDifferential(self.rootNode, 0, self.vData.torqueRatio[1], self.vData.maxSpeedRatio[1] * 1000)
