@@ -74,6 +74,8 @@ local implements_front
 local implements_back
 local listOfObjects
 
+global debug = 5
+
 -- #############################################################################
 
 function FS25_EnhancedVehicle:new(mission, modDirectory, modName, i18n, gui, inputManager, messageCenter)
