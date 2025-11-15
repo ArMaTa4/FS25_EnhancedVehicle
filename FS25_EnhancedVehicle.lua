@@ -942,10 +942,12 @@ function FS25_EnhancedVehicle:updatevData(self)
     if FS25_EnhancedVehicle.functionDiffIsEnabled then
       if self.vData.want[2] then
         updateDifferential(self.rootNode, 1, self.vData.torqueRatio[2]*0.5, 0.5)
-        if debug > 0 then print("--> ("..self.rootNode..") changed back diff to: ON") end
+        -- if debug > 0 then 
+          print("--> ("..self.rootNode..") changed back diff to: ON") end
       else
         updateDifferential(self.rootNode, 1, self.vData.torqueRatio[2], self.vData.maxSpeedRatio[2] * 1000)
-        if debug > 0 then print("--> ("..self.rootNode..") changed back diff to: OFF") end
+        -- if debug > 0 then 
+          print("--> ("..self.rootNode..") changed back diff to: OFF") end
       end
     end
     self.vData.is[2] = self.vData.want[2]
@@ -956,13 +958,16 @@ function FS25_EnhancedVehicle:updatevData(self)
     if FS25_EnhancedVehicle.functionDiffIsEnabled then
       if self.vData.want[3] == 0 then
         updateDifferential(self.rootNode, 2, -0.00001, 1)
-        if debug > 0 then print("--> ("..self.rootNode..") changed wheel drive mode to: 2WD") end
+        -- if debug > 0 then 
+          print("--> ("..self.rootNode..") changed wheel drive mode to: 2WD") end
       elseif self.vData.want[3] == 1 then
         updateDifferential(self.rootNode, 2, self.vData.torqueRatio[3]*0.25, 0.25)
-        if debug > 0 then print("--> ("..self.rootNode..") changed wheel drive mode to: 4WD") end
+        -- if debug > 0 then 
+          print("--> ("..self.rootNode..") changed wheel drive mode to: 4WD") end
       elseif self.vData.want[3] == 2 then
         updateDifferential(self.rootNode, 2, 1*0.25, 0.25)
-        if debug > 0 then print("--> ("..self.rootNode..") changed wheel drive mode to: FWD") end
+        -- if debug > 0 then 
+          print("--> ("..self.rootNode..") changed wheel drive mode to: FWD") end
       end
     end
     self.vData.is[3] = self.vData.want[3]
